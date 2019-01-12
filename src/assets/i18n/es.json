@@ -1,0 +1,19 @@
+{
+  "Application": {
+    "Translate": {
+      "Title": "Traducir",
+      "Languages": {
+        "Spanish": "Español",
+        "English": "Inglés"
+      }
+    }
+},
+  "Login": {
+    "Title": "Iniciar sesión",
+    "Fields": {
+      "Username": "Usuario",
+      "Password": "Contraseña",
+      "SignIn": "Entrar"
+    }
+  }
+}

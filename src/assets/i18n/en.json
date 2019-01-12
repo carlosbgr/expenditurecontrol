@@ -1,0 +1,19 @@
+{
+  "Application": {
+    "Translate": {
+      "Title": "Translate",
+      "Languages": {
+        "Spanish": "Spanish",
+        "English": "English"
+      }
+    }
+},
+  "Login": {
+    "Title": "Login",
+    "Fields": {
+      "Username": "Username",
+      "Password": "Password",
+      "SignIn": "Sign in"
+    }
+  }
+}

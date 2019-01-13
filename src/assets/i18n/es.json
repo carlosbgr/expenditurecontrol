@@ -14,6 +14,11 @@
       "Username": "Usuario",
       "Password": "Contraseña",
       "SignIn": "Entrar"
+    },
+    "Errors": {
+      "UserNotFound": "No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado.",
+      "WrongPassword": "La contraseña no es válida o el usuario no tiene una contraseña.",
+      "Other": "Hubo algún problema al iniciar sesión."
     }
   }
 }

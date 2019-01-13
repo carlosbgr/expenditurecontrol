@@ -3,7 +3,7 @@
     <div class="card border-dark mb-3">
       <div class="card-header">{{ 'Login.Title' | translate }}</div>
       <div class="card-body">
-        <form [formGroup]="loginFrm" (ngSubmit)="login()">
+        <form [formGroup]="loginFrm" (ngSubmit)="tryLogin(loginFrm.value)">
           <div class="form-group">
             <div class="input-group mb-2 mr-sm-2">
               <div class="input-group-prepend">
@@ -18,7 +18,7 @@
                 formControlName="password">
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-light btn-block border-dark">{{ 'Login.Fields.SignIn' | translate }}</button>
+            <button type="submit" [disabled]="!loginFrm.valid" class="btn btn-light btn-block border-dark">{{ 'Login.Fields.SignIn' | translate }}</button>
           </div>
       </form>
       </div>

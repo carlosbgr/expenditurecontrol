@@ -6,19 +6,49 @@
         "Spanish": "Spanish",
         "English": "English"
       }
+    },
+    "Messages": {
+      "Saved": "Saved successfully.",
+      "Deleted": "Successfully eliminated.",
+      "Updated": "Successfully updated.",
+      "GeneralError": "There was a general error.."
     }
 },
   "Login": {
     "Title": "Login",
     "Fields": {
+      "Email": "Email",
       "Username": "Username",
       "Password": "Password",
-      "SignIn": "Sign in"
+      "SignIn": "Sign in",
+      "SignUp": "Sign up"
     },
     "Errors": {
+      "OneField": "You must enter username and password to log in.",
       "UserNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
       "WrongPassword": "The password is invalid or the user does not have a password.",
       "Other": "There was some problem when sign in."
+    }
+  },
+  "SignUp": {
+    "Title": "Sign up",
+    "Fields": {
+      "Username": "Username",
+      "Name": "Name",
+      "LastNames": "Lastnames",
+      "Birth": "Year of birth",
+      "Email": "Email",
+      "VerifyEmail": "Verify Email",
+      "Password": "Password",
+      "TermsOfUse": "Terms of Use"
+    },
+    "Errors": {
+      "RegisteredUserName": "There is already an account with this username.",
+      "RegisteredEmail": "An account with this email already exists.",
+      "NoOlder": "You must be of legal age.",
+      "EmailNoEquals": "The emails do not match.",
+      "UnsafePassword": "Unsafe Password.",
+      "Other": "There was a problem when registering."
     }
   }
 }

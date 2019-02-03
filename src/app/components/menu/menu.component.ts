@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DatabaseService } from '../../services/database/database.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+users: Array<any> = [];
+
+  constructor(dbService: DatabaseService) {
+    // db.list('Users').valueChanges().subscribe(users => {
+    //   this.users = users;
+    // });
+
+   }
 
   ngOnInit() {
   }

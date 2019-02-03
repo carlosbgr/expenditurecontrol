@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row h-100 justify-content-center align-items-center mt-5">
+    <div class="card border-dark mb-3">
+      <div class="card-header">{{ 'SignUp.Title' | translate }}</div>
+      <div class="card-body">
+        <form [formGroup]="signupFrm" (ngSubmit)="trySignup(signupFrm.value)" autocomplete="off">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.Name' | translate }}"
+              formControlName="userName">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.Name' | translate }}"
+              formControlName="name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.LastNames' | translate }}"
+              formControlName="lastName">
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control" placeholder="{{ 'SignUp.Fields.Birth' | translate }}"
+              formControlName="birth">
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+              </div>
+              <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.Email' | translate }}"
+                formControlName="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group mb-2 mr-sm-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+              </div>
+              <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.VerifyEmail' | translate }}"
+                formControlName="verifyEmail">
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="{{ 'SignUp.Fields.Password' | translate }}"
+                formControlName="password">
+          </div>
+          <div class="form-group">
+            <button type="submit" [disabled]="!signupFrm.valid" class="btn btn-light btn-block border-dark">
+              {{ 'Login.Fields.SignUp' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

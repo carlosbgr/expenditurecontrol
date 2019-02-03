@@ -1,0 +1,51 @@
+{
+  "Users": [
+    {
+      "idUser": 1,
+      "email": "balaguer.88@gmail.com",
+      "username": "carlos_bgr",
+      "name": "Carlos",
+      "lastname": "Balaguer Franch"
+    },
+    {
+      "idUser": 2,
+      "email": "balaguer.88@outlook.com",
+      "username": "carlos_bgr_OU",
+      "name": "Carlos_OU",
+      "lastname": "Balaguer Franch_OU"
+    }
+  ],
+  "Accountancy": [
+    {
+      "idUser": 1,
+      "books": [
+        {
+          "year": 2018,
+          "lines": [
+            {
+              "idLine": "20180113_01",
+              "month": 1,
+              "day": 13,
+              "type": "credit",
+              "import": 23.88
+            },
+            {
+              "idLine": "20180113_02",
+              "month": 1,
+              "day": 13,
+              "type": "debit",
+              "import": 12.10
+            },
+            {
+              "idLine": "20180114_01",
+              "month": 1,
+              "day": 14,
+              "type": "debit",
+              "import": 10.00
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

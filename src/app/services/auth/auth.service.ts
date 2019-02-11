@@ -7,19 +7,19 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
   constructor(private _toastr: ToastrService, private _translate: TranslateService) { }
 
-  doLogin(value) {
+  doLogin(value: any) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.userName, value.password)
-      .then(res => {
+      .then((res) => {
         resolve(res);
         localStorage.setItem('LoggedInUser', res.user.email);
-      }, err => {
+      }, (err) => {
         reject(err);
         console.log(err);
       });
@@ -47,7 +47,7 @@ export class AuthService {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((res) => {
       itsOk = true;
-    }).catch(err => {
+    }).catch((err) => {
       switch (err.code) {
         case 'auth/email-already-in-use':
           this._toastr.warning(this._translate.instant('SignUp.Errors.RegisteredEmail'));
@@ -57,7 +57,7 @@ export class AuthService {
           break;
         default:
           this._toastr.warning(this._translate.instant('SignUp.Errors.Others'));
-         break;
+          break;
       }
       itsOk = false;
     });

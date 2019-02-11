@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   errorMessage: string;
@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
-    private _translate: TranslateService
+    private _translate: TranslateService,
     ) {
     this.loginFrm = this._formBuilder.group({
       userName: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -36,9 +36,10 @@ export class LoginComponent implements OnInit {
 
   tryLogin(form: Form) {
     this._authService.doLogin(form)
-    .then(resolve => {
+    .then((resolve) => {
       this._router.navigate(['/menu']);
-    }, error => {
+    },
+    (error) => {
       switch (error.code) {
         case 'auth/user-not-found':
           this._toastrService.warning(this._translate.instant('Login.Errors.UserNotFound'));
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
           break;
         default:
           this._toastrService.warning(this._translate.instant('Login.Errors.Others'));
-         break;
+          break;
       }
     });
   }

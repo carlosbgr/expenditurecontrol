@@ -15,11 +15,11 @@ import { environment } from 'src/environments/environment.prod';
 import { MenuComponent } from './components/menu/menu.component';
 import { ImputeComponent } from './components/impute/impute.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import firebase from '@firebase/app';
+import * as firebase from 'firebase';
 
 firebase.initializeApp(environment.firebase);
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
@@ -29,7 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     MenuComponent,
     ImputeComponent,
-    SignInComponent
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,19 +40,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    })
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }

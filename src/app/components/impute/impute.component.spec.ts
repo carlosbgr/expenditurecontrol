@@ -8,7 +8,7 @@ describe('ImputeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImputeComponent ]
+      declarations: [ImputeComponent],
     })
     .compileComponents();
   }));

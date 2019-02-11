@@ -9,12 +9,12 @@ import { MenuComponent } from './components/menu/menu.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'signin', component: SignInComponent},
-  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] }
+  { path: 'signin', component: SignInComponent },
+  { path: 'menu', component: MenuComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

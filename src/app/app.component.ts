@@ -3,20 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
 
-  languages: Array<any> = [];
+  languages: any[] = [];
 
   constructor(private translate: TranslateService, private http: HttpClient) {
     translate.setDefaultLang('es');
-    this.getJSON('../assets/i18n/languages.json').subscribe(lan => {
-      for ( let i = 0 ; i < lan.length; i++ ) {
+    this.getJSON('../assets/i18n/languages.json').subscribe((lan) => {
+      for (let i = 0 ; i < lan.length; i += 1) {
         this.languages.push(lan[i]);
       }
     });

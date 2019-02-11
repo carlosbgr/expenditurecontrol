@@ -13,7 +13,7 @@ import { DatabaseService } from 'src/app/services/database/database.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
   errorMessage: string;
@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
-    private _translate: TranslateService
+    private _translate: TranslateService,
   ) {
     this.signupFrm = this._formBuilder.group({
       userName: ['', [Validators.required]],
@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
       birth: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       verifyEmail: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -133,7 +133,7 @@ export class SignInComponent implements OnInit {
 
   userExist(form: Form): boolean {
     let itsOk = false;
-    this._dbService.getOne('Users', 'email', form['email']).then(res => {
+    this._dbService.getOne('Users', 'email', form['email']).then((res: any) => {
       if (res) {
         itsOk = true;
       }
@@ -151,9 +151,9 @@ export class SignInComponent implements OnInit {
       form['birth'],
       );
 
-      if (this._dbService.set('Users', user)) {
-        console.log('sdsd');
-        this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
-      }
+    if (this._dbService.set('Users', user)) {
+      console.log('sdsd');
+      this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
+    }
   }
 }

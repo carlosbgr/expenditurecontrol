@@ -14,4 +14,8 @@ export class User implements IUser {
     this.email = email;
     this.birth = birth;
   }
+
+  getUser() {
+    return this;
+  }
 }

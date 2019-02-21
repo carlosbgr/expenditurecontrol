@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           this._toastrService.warning(this._translate.instant('Login.Errors.WrongPassword'));
           break;
         default:
+          console.log(error);
           this._toastrService.warning(this._translate.instant('Login.Errors.Others'));
           break;
       }

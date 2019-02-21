@@ -12,11 +12,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { environment } from 'src/environments/environment.prod';
+
 import { MenuComponent } from './components/menu/menu.component';
 import { ImputeComponent } from './components/impute/impute.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import * as firebase from 'firebase';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 firebase.initializeApp(environment.firebase);
 
 export function httpLoaderFactory(http: HttpClient) {
@@ -50,6 +53,8 @@ export function httpLoaderFactory(http: HttpClient) {
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

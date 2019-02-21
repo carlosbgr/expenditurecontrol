@@ -5,7 +5,7 @@
       <div class="card-body">
         <form [formGroup]="signupFrm" (ngSubmit)="trySignup(signupFrm.value)" autocomplete="off">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.Name' | translate }}"
+            <input type="text" class="form-control" placeholder="{{ 'SignUp.Fields.Username' | translate }}"
               formControlName="userName">
           </div>
           <div class="form-group">

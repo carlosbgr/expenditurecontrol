@@ -9,6 +9,7 @@ import { User } from '../../classes/user';
 
 import * as moment from 'moment';
 import { DatabaseService } from 'src/app/services/database/database.service';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,6 +27,7 @@ export class SignInComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
     private _translate: TranslateService,
+    private _firestore: FirestoreService,
   ) {
     this.signupFrm = this._formBuilder.group({
       userName: ['', [Validators.required]],
@@ -132,28 +134,37 @@ export class SignInComponent implements OnInit {
   }
 
   userExist(form: Form): boolean {
-    let itsOk = false;
-    this._dbService.getOne('Users', 'email', form['email']).then((res: any) => {
-      if (res) {
-        itsOk = true;
-      }
-    });
+    // let itsOk = false;
+    // this._dbService.getOne('Users', 'email', form['email']).then((res: any) => {
+    //   if (res) {
+    //     itsOk = true;
+    //   }
+    // });
+    console.log(this._firestore.find('Users', 'userName', form['userName']));
+    return this._firestore.find('Users', 'userName', form['userName']);
 
-    return itsOk;
+    // return itsOk;
   }
 
   createUser(form: Form) {
-    const user = new User(
-      form['userName'],
-      form['name'],
-      form['lastName'],
-      form['email'],
-      form['birth'],
-      );
+    // const user = {
+    //   userName: form['userName'],
+    //   name: form['name'],
+    //   lastName: form['lastName'],
+    //   email: form['email'],
+    //   birth: form['birth'],
+    // };
 
-    if (this._dbService.set('Users', user)) {
-      console.log('sdsd');
-      this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
-    }
+    const user = new User(form['userName'], form['name'], form['lastName'], form['email'], form['birth']);
+
+    console.log(user);
+
+    // if (this._firestore.create('Users', user.getUser())) {
+    //   this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
+    // }
+
+    // if (this._dbService.set('Users', user)) {
+    //   this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
+    // }
   }
 }

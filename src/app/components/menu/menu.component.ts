@@ -11,17 +11,20 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 export class MenuComponent implements OnInit {
   users: any[] = [];
 
-  constructor(private _firestore: FirestoreService) {
+  constructor(private _firestoreService: FirestoreService) {
     // db.list('Users').valueChanges().subscribe(users => {
     //   this.users = users;
     // });
   }
 
   ngOnInit() {
-    console.log(this._firestore.get('Users').get());
-    this._firestore.get('Users').valueChanges().subscribe((user) => {
-      console.log(user);
+    this._firestoreService.get('Users').subscribe((users) => {
+      // console.log(users);
     });
+
+    // this._firestore.get('Users').valueChanges().subscribe((user) => {
+    //   console.log(user);
+    // });
   }
 
 }

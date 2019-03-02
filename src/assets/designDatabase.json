@@ -3,14 +3,12 @@
     {
       "idUser": 1,
       "email": "balaguer.88@gmail.com",
-      "username": "carlos_bgr",
       "name": "Carlos",
       "lastname": "Balaguer Franch"
     },
     {
       "idUser": 2,
       "email": "balaguer.88@outlook.com",
-      "username": "carlos_bgr_OU",
       "name": "Carlos_OU",
       "lastname": "Balaguer Franch_OU"
     }

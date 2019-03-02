@@ -18,13 +18,12 @@
     "Title": "Login",
     "Fields": {
       "Email": "Email",
-      "Username": "Username",
       "Password": "Password",
       "SignIn": "Sign in",
       "SignUp": "Sign up"
     },
     "Errors": {
-      "OneField": "You must enter username and password to log in.",
+      "OneField": "You must enter email and password to log in.",
       "UserNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
       "WrongPassword": "The password is invalid or the user does not have a password.",
       "Other": "There was some problem when sign in."
@@ -33,7 +32,6 @@
   "SignUp": {
     "Title": "Sign up",
     "Fields": {
-      "Username": "Username",
       "Name": "Name",
       "LastNames": "Lastnames",
       "Birth": "Year of birth",
@@ -42,8 +40,10 @@
       "Password": "Password",
       "TermsOfUse": "Terms of Use"
     },
+    "Messages": {
+      "Registered": "Registered user successfully."
+    },
     "Errors": {
-      "RegisteredUserName": "There is already an account with this username.",
       "RegisteredEmail": "An account with this email already exists.",
       "NoOlder": "You must be of legal age.",
       "EmailNoEquals": "The emails do not match.",

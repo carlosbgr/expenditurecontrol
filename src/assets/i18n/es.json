@@ -18,13 +18,12 @@
     "Title": "Iniciar sesión",
     "Fields": {
       "Email": "Correo",
-      "Username": "Usuario",
       "Password": "Contraseña",
       "SignIn": "Entrar",
       "SignUp": "Registrarme"
     },
     "Errors": {
-      "OneField": "Debe introducir usuario y contraseña para iniciar sesion.",
+      "OneField": "Debe introducir email y contraseña para iniciar sesion.",
       "UserNotFound": "No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado.",
       "WrongPassword": "La contraseña no es válida o el usuario no tiene una contraseña.",
       "Other": "Hubo algún problema al iniciar sesión."
@@ -33,7 +32,6 @@
   "SignUp": {
     "Title": "Registro",
     "Fields": {
-      "Username": "Usuario",
       "Name": "Nombre",
       "LastNames": "Apellidos",
       "Birth": "Año de Nacimiento",
@@ -42,8 +40,10 @@
       "Password": "Contraseña",
       "TermsOfUse": "Términos de Uso"
     },
+    "Messages": {
+      "Registered": "Usuario registrado con exitó."
+    },
     "Errors": {
-      "RegisteredUserName": "Ya existe una cuenta con este nombre de usuario.",
       "RegisteredEmail": "Ya existe un cuenta con este correo.",
       "NoOlder": "Debe ser mayor de edad.",
       "EmailNoEquals": "Los Correos no coinciden.",

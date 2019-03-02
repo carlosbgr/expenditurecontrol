@@ -15,12 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 
 import { MenuComponent } from './components/menu/menu.component';
 import { ImputeComponent } from './components/impute/impute.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import * as firebase from 'firebase';
-firebase.initializeApp(environment.firebase);
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +27,7 @@ export function httpLoaderFactory(http: HttpClient) {
     LoginComponent,
     MenuComponent,
     ImputeComponent,
-    SignInComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +48,6 @@ export function httpLoaderFactory(http: HttpClient) {
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

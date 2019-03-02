@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
-    private _translate: TranslateService,
+    private _translateService: TranslateService,
     ) {
     this.loginFrm = this._formBuilder.group({
-      userName: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -42,14 +42,13 @@ export class LoginComponent implements OnInit {
     (error) => {
       switch (error.code) {
         case 'auth/user-not-found':
-          this._toastrService.warning(this._translate.instant('Login.Errors.UserNotFound'));
+          this._toastrService.warning(this._translateService.instant('Login.Errors.UserNotFound'));
           break;
         case 'auth/wrong-password':
-          this._toastrService.warning(this._translate.instant('Login.Errors.WrongPassword'));
+          this._toastrService.warning(this._translateService.instant('Login.Errors.WrongPassword'));
           break;
         default:
-          console.log(error);
-          this._toastrService.warning(this._translate.instant('Login.Errors.Others'));
+          this._toastrService.warning(this._translateService.instant('Login.Errors.Other'));
           break;
       }
     });

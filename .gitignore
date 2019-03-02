@@ -28,6 +28,7 @@ speed-measure-plugin.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.vs/*
 
 # misc
 /.sass-cache
@@ -42,3 +43,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Angular files
+package-lock.json

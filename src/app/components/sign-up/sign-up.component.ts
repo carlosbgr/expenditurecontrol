@@ -12,25 +12,24 @@ import { DatabaseService } from 'src/app/services/database/database.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss'],
 })
-export class SignInComponent implements OnInit {
+export class SignUpComponent implements OnInit {
   errorMessage: string;
   signupFrm: FormGroup;
 
   constructor(
     private _authService: AuthService,
     private _dbService: DatabaseService,
+    private _firestoreService: FirestoreService,
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
-    private _translate: TranslateService,
-    private _firestore: FirestoreService,
+    private _translateService: TranslateService,
   ) {
     this.signupFrm = this._formBuilder.group({
-      userName: ['', [Validators.required]],
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       birth: ['', [Validators.required]],
@@ -41,31 +40,41 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.signupFrm.reset();
+    //this.signupFrm.reset();
   }
 
   trySignup(form: Form) {
-    if (this.validateFields(form) && !this.userExist(form)) {
-      this._authService.doSignUp(form['email'], form['password']);
-      this.createUser(form);
-    }
+    this._authService.exitsUser(form['email']).then((resolve) => {
+      if (resolve.length === 0) {
+        this._authService.doSignUp(form['email'], form['password']);
+        this.createUser(form);
+        this._toastrService.success(this._translateService.instant('SignUp.Messages.Registered'));
+      } else {
+        this._toastrService.warning(this._translateService.instant('SignUp.Errors.RegisteredEmail'));
+      }
+    });
+
+    setTimeout(() => {
+      this._router.navigate(['/']);
+      this.signupFrm.reset();
+    }, 1000);
   }
 
   validateFields(form: Form): boolean {
     let validate = true;
     if (!this.validateAdult(form['birth'])) {
       validate = false;
-      this._toastrService.warning(this._translate.instant('SignUp.Errors.NoOlder'));
+      this._toastrService.warning(this._translateService.instant('SignUp.Errors.NoOlder'));
     }
 
     if (!this.validateEmail(form['email'], form['verifyEmail'])) {
       validate = false;
-      this._toastrService.warning(this._translate.instant('SignUp.Errors.EmailNoEquals'));
+      this._toastrService.warning(this._translateService.instant('SignUp.Errors.EmailNoEquals'));
     }
 
     if (this.validatePassword(form['password']) !== 100) {
       validate = false;
-      this._toastrService.warning(this._translate.instant('SignUp.Errors.UnsafePassword'));
+      this._toastrService.warning(this._translateService.instant('SignUp.Errors.UnsafePassword'));
     }
     return validate;
   }
@@ -133,38 +142,22 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  userExist(form: Form): boolean {
-    // let itsOk = false;
-    // this._dbService.getOne('Users', 'email', form['email']).then((res: any) => {
-    //   if (res) {
-    //     itsOk = true;
-    //   }
-    // });
-    console.log(this._firestore.find('Users', 'userName', form['userName']));
-    return this._firestore.find('Users', 'userName', form['userName']);
+  createUser(form: Form): boolean {
+    let itsOk = false;
+    const user = new User(form['name'], form['lastName'], form['email'], form['birth']);
+    const userObject = {
+      name: user.getName(),
+      lastName: user.getLastName(),
+      email: user.getEmail(),
+      birth: user.getBirth(),
+    };
 
-    // return itsOk;
-  }
+    this._firestoreService.create('Users', userObject).subscribe((idUser) => {
+      itsOk = true;
+    }, (error) => {
+      itsOk = false;
+    });
 
-  createUser(form: Form) {
-    // const user = {
-    //   userName: form['userName'],
-    //   name: form['name'],
-    //   lastName: form['lastName'],
-    //   email: form['email'],
-    //   birth: form['birth'],
-    // };
-
-    const user = new User(form['userName'], form['name'], form['lastName'], form['email'], form['birth']);
-
-    console.log(user);
-
-    // if (this._firestore.create('Users', user.getUser())) {
-    //   this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
-    // }
-
-    // if (this._dbService.set('Users', user)) {
-    //   this._toastrService.warning(this._translate.instant('SignUp.Errors.RegisteredUserName'));
-    // }
+    return itsOk;
   }
 }

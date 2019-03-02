@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
-import { firebase } from '@firebase/app';
-import '@firebase/auth';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -11,17 +12,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AuthService {
 
-  constructor(private _toastr: ToastrService, private _translate: TranslateService) { }
+  constructor(private _toastrService: ToastrService, private _translateService: TranslateService) { }
 
   doLogin(value: any) {
     return new Promise<any>((resolve, reject) => {
-      firebase.auth().signInWithEmailAndPassword(value.userName, value.password)
+      firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then((res) => {
         resolve(res);
         localStorage.setItem('LoggedInUser', res.user.email);
       }, (err) => {
         reject(err);
-        console.log(err);
       });
     });
   }
@@ -42,25 +42,39 @@ export class AuthService {
     return localStorage.getItem('LoggedInUser') !== null;
   }
 
-  doSignUp(email: string, password: string): any {
-    let itsOk: boolean;
+  doSignUp(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((res) => {
-      itsOk = true;
-    }).catch((err) => {
-      switch (err.code) {
-        case 'auth/email-already-in-use':
-          this._toastr.warning(this._translate.instant('SignUp.Errors.RegisteredEmail'));
-          break;
-        case 'auth/weak-password':
-          this._toastr.warning(this._translate.instant('SignUp.Errors.UnsafePassword'));
-          break;
-        default:
-          this._toastr.warning(this._translate.instant('SignUp.Errors.Others'));
-          break;
-      }
-      itsOk = false;
+      .catch((err) => {
+        switch (err.code) {
+          case 'auth/email-already-in-use':
+            this._toastrService.warning(this._translateService.instant('SignUp.Errors.RegisteredEmail'));
+            break;
+          case 'auth/weak-password':
+            this._toastrService.warning(this._translateService.instant('SignUp.Errors.UnsafePassword'));
+            break;
+          default:
+            this._toastrService.warning(this._translateService.instant('SignUp.Errors.Others'));
+            break;
+        }
+      });
+  }
+
+  exitsUser(email: string) {
+    // let itsOK = false;
+    // firebase.auth().fetchProvidersForEmail(email).then((exists) => {
+    //   if (exists.length === 0) {
+    //     itsOK = true;
+    //   }
+    // });
+    // return itsOK;
+
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().fetchProvidersForEmail(email)
+      .then((res) => {
+        resolve(res);
+      }, (err) => {
+        reject(err);
+      });
     });
-    return itsOk;
   }
 }

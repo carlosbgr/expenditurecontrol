@@ -29,6 +29,9 @@
       "Other": "Hubo algún problema al iniciar sesión."
     }
   },
+  "Logout": {
+    "Title": "Cerrar sesión"
+  },
   "SignUp": {
     "Title": "Registro",
     "Fields": {

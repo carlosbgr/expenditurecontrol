@@ -6,20 +6,24 @@ import 'firebase/auth';
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  constructor(private _toastrService: ToastrService, private _translateService: TranslateService) { }
+  constructor(
+    private _toastrService: ToastrService,
+    private _translateService: TranslateService,
+    private _storageService: StorageService) { }
 
   doLogin(value: any) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then((res) => {
         resolve(res);
-        localStorage.setItem('LoggedInUser', res.user.email);
+        this._storageService.setItem('LoggedInUser', res.user.email);
       }, (err) => {
         reject(err);
       });
@@ -31,7 +35,7 @@ export class AuthService {
       if (firebase.auth().currentUser) {
         firebase.auth().signOut();
         resolve();
-        localStorage.removeItem('LoggedInUser');
+        this._storageService.removeItem('LoggedInUser');
       } else {
         reject();
       }

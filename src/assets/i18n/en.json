@@ -29,6 +29,9 @@
       "Other": "There was some problem when sign in."
     }
   },
+  "Logout": {
+    "Title": "Logout"
+  },
   "SignUp": {
     "Title": "Sign up",
     "Fields": {

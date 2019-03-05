@@ -2,13 +2,21 @@
     <div class="mr-auto p-2 ml-3">
         <h4> Expenditure Control </h4>
     </div>
-    <div class="ml-auto p-2 mr-5">
+    <div class="ml-2 py-2 mr-5">
         <select (change)="switchLanguage($event)" class="form-control">
             <option *ngFor="let lan of languages" [ngSwitch]="lan.file" id="{{ lan.file }}">
               <p *ngSwitchCase="'es'">{{ 'Application.Translate.Languages.Spanish' | translate }}</p>
               <p *ngSwitchCase="'en'">{{ 'Application.Translate.Languages.English' | translate }}</p>
             </option>
           </select>
+    </div>
+    <div class="ml-2 py-2 mr-3">
+      <button *ngIf="isLogged"
+        class="btn btn-danger"
+        title="{{ 'Logout.Title' | translate }}"
+        (click)="logOut()">
+        {{ 'Logout.Title' | translate }}
+      </button>
     </div>
 </div>
 <!-- TOASTR -->

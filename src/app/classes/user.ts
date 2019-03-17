@@ -1,16 +1,24 @@
-import { IUser } from '../interfaces/user';
+export interface IUser {
+  name?: string;
+  lastName?: string;
+  email?: string;
+  birth?: Date;
+  language: string;
+}
 
 export class User implements IUser {
   name: string;
   lastName: string;
   email: string;
   birth: Date;
+  language: string;
 
-  constructor (name: string, lastName: string, email: string, birth: Date) {
+  constructor (name: string, lastName: string, email: string, birth: Date, language: string) {
     this.name = name;
     this.lastName = lastName;
     this.email = email;
     this.birth = birth;
+    this.language = language;
   }
 
   getName() {
@@ -27,6 +35,10 @@ export class User implements IUser {
 
   getBirth() {
     return this.birth;
+  }
+
+  getLanguage() {
+    return this.language;
   }
 
   getUser() {

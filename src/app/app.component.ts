@@ -32,6 +32,8 @@ export class AppComponent {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
+    this._storageService.removeItem('LoggedInUser');
+
     this._storageService.watchStorage().subscribe((data: string) => {
       if (data) {
         this.isLogged = true;

@@ -11,7 +11,7 @@
           </select>
     </div>
     <div class="ml-2 py-2 mr-3">
-      <button *ngIf="isLogged"
+      <button *ngIf="_router.url !== '/'"
         class="btn btn-danger"
         title="{{ 'Logout.Title' | translate }}"
         (click)="logOut()">

@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.signupFrm.reset();
+    this.signupFrm.reset();
   }
 
   trySignup(form: Form) {
@@ -144,7 +144,7 @@ export class SignUpComponent implements OnInit {
 
   createUser(form: Form): boolean {
     let itsOk = false;
-    const user = new User(form['name'], form['lastName'], form['email'], form['birth']);
+    const user = new User(form['name'], form['lastName'], form['email'], form['birth'], null);
     const userObject = {
       name: user.getName(),
       lastName: user.getLastName(),

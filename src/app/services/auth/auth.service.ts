@@ -23,6 +23,7 @@ export class AuthService {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then((res) => {
         resolve(res);
+        console.log(res);
         this._storageService.setItem('LoggedInUser', res.user.email);
       }, (err) => {
         reject(err);

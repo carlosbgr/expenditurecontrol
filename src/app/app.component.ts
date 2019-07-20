@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
 import { StorageService } from './services/storage/storage.service';
-import { AuthService } from './services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +19,6 @@ export class AppComponent {
     private _translateService: TranslateService,
     private _http: HttpClient,
     private _storageService: StorageService,
-    private _authService: AuthService,
     private _router: Router) {
     _translateService.setDefaultLang('es');
     this.getJSON('../assets/i18n/languages.json').subscribe((lan) => {
@@ -32,13 +30,6 @@ export class AppComponent {
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    // this._storageService.removeItem('LoggedInUser');
-
-    // this._storageService.watchStorage().subscribe((data: string) => {
-    //   if (data) {
-    //     this.isLogged = true;
-    //   }
-    // });
   }
 
   public getJSON(json: string): Observable<any> {
@@ -50,10 +41,15 @@ export class AppComponent {
   }
 
   logOut() {
-    this._authService.doLogout();
+    this._storageService.removeItem('LoggedInUser');
+    this._storageService.removeItem('tkn');
     this.isLogged = false;
     this._router.navigate(['/']);
-
   }
 
+  redirect(route: string) {
+    if (!(this._router.isActive(route, true) && this._router.isActive('/', true))) {
+      this._router.navigate([route]);
+    }
+  }
 }

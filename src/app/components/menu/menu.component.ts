@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { FirestoreService } from '../../services/firestore/firestore.service';
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -11,12 +9,8 @@ export class MenuComponent implements OnInit {
 
   @ViewChild('modalAddAccount') modalAddAccount;
 
-  constructor(private _firestoreService: FirestoreService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.modalAddAccount.open();
   }
-
-
-
 }

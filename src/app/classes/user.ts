@@ -3,7 +3,7 @@ export interface IUser {
   lastName?: string;
   email?: string;
   birth?: Date;
-  language: string;
+  language?: string;
 }
 
 export class User implements IUser {

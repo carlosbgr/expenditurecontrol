@@ -1,0 +1,106 @@
+
+  <div class="row h-100 mt-5">
+    <div class="col-3 px-5">
+      <div class="card border-black">
+        <div class="card-header"> {{ 'Concept.Title' | translate }} </div>
+          <div class="card-body">
+            <form [formGroup]="conceptsForm" (ngSubmit)="saveConcept(conceptsForm)">
+              <div class="form-group">
+                <label> {{ 'Application.Generics.Title' | translate }} </label>
+                <input class="form-control" formControlName="title" type="text">
+              </div>
+              <div class="form-group">
+                  <label> {{ 'Concept.Fields.IsSubConcept' | translate }}  </label>
+                  <div class="form-row">
+                    <div class="col-6">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="isSubConceptYes" name="isSubConcept" class="custom-control-input" checked
+                          formControlName="isSubConcept" [value]=0>
+                        <label class="custom-control-label" for="isSubConceptYes">{{ 'Application.Generics.Yes' | translate }}</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="custom-control custom-radio">
+                        <input type="radio" id="isSubConceptNo" name="isSubConcept" class="custom-control-input"
+                          formControlName="isSubConcept" [value]=1>
+                        <label class="custom-control-label" for="isSubConceptNo"> {{ 'Application.Generics.No' | translate }} </label>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label> {{ 'Concept.Fields.DependenceBy' | translate }} </label>
+                  <select class="form-control" formControlName="conceptDependenceId">
+                    <option value=null> {{ 'Application.Generics.Select' | translate }} {{ 'Concept.Title' | translate }}  </option>
+                    <option *ngFor="let concept of selectorConcepts" [ngValue]="concept._id">
+                      {{ concept.title }}
+                    </option>
+                  </select>
+              </div>
+            </form>
+          </div>
+        <div class="card-footer d-flex justify-content-end">
+          <ng-container *ngIf="modeEdition else modeCreation">
+            <button class="btn btn-outline-secondary border-secondary" type="button"
+              (click)="editConcept(conceptsForm)"
+              [disabled]="!conceptsForm.valid">
+              {{ 'Application.Btns.Edit' | translate }}
+            </button>
+          </ng-container>
+          <ng-template #modeCreation>
+            <button class="btn btn-outline-primary border-primary" type="button"
+              (click)="createConcept(conceptsForm)"
+              [disabled]="!conceptsForm.valid">
+              {{ 'Application.Btns.Create' | translate }}
+            </button>
+          </ng-template>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="card border-black px-4 py-4">
+          <table id="tableConcepts" class="table" cellspacing="0" >
+              <thead>
+                <tr>
+                  <th> {{ 'Application.Generics.Title' | translate }} </th>
+                  <th> {{ 'Concept.Fields.IsSubConcept' | translate }} </th>
+                  <th> {{ 'Concept.Fields.DependenceBy' | translate }} </th>
+                  <th> {{ 'Concept.Fields.CreatedByMe' | translate }} </th>
+                  <th></th>
+                </tr>
+              </thead>
+              <thead id="filters">
+                <tr>
+                  <th> {{ 'Application.Generics.Title' | translate }} </th>
+                  <th> {{ 'Concept.Fields.IsSubConcept' | translate }} </th>
+                  <th> {{ 'Concept.Fields.DependenceBy' | translate }} </th>
+                  <th> {{ 'Concept.Fields.CreatedByMe' | translate }} </th>
+                  <th hidden></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let concept of concepts">
+                  <td class="font-weight-light" >{{ concept.title }}</td>
+                  <td class="font-weight-light">{{ appSettings.translateTrueFalse(concept.isSubConcept, translateService) }}</td>
+                  <td class="font-weight-light">{{ concept.conceptDependeceName }}</td>
+                  <td class="font-weight-light">{{ appSettings.translateTrueFalse(!concept.isGenericConcept, translateService) }}</td>
+                  <td class="d-flex justify-content-center font-weight-light">
+                    <button class="btn btn-outline-primary border-primary" type="button"
+                      title="{{ 'Application.Btns.Edit' | translate }}"
+                      (click)="fillFormConcept(concept)">
+                      {{ 'Application.Btns.Edit' | translate }}
+                    </button>
+                    <button class="btn btn-danger ml-2" type="button"
+                      title="{{ 'Application.Btns.Delete' | translate }}"
+                      (click)="deleteConcept(concept)">
+                        X
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

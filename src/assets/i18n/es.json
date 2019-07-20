@@ -7,6 +7,26 @@
         "English": "Inglés"
       }
     },
+    "Generics": {
+      "Title": "Título",
+      "Yes": "Si",
+      "No": "No",
+      "Select": "Seleciona"
+    },
+    "Btns": {
+      "Create": "Crear",
+      "Edit": "Editar",
+      "Delete": "Borrar",
+      "Cancel": "Cancelar"
+    },
+    "MenuNavbar": {
+      "Configuration": {
+        "Title": "Configuración",
+        "Menu": {
+          "Concepts": "Conceptos"
+        }
+      }
+    },
     "Messages": {
       "Saved": "Guardado con exito.",
       "Deleted": "Eliminado con exito.",
@@ -24,7 +44,7 @@
     },
     "Errors": {
       "OneField": "Debe introducir email y contraseña para iniciar sesion.",
-      "UserNotFound": "No hay registro de usuario correspondiente a este identificador. El usuario puede haber sido eliminado.",
+      "UserNotFound": "El Usuario no existe.",
       "WrongPassword": "La contraseña no es válida o el usuario no tiene una contraseña.",
       "Other": "Hubo algún problema al iniciar sesión."
     }
@@ -53,5 +73,37 @@
       "UnsafePassword": "Contraseña Insegura.",
       "Other": "Hubo algún problema al Registrarse."
     }
-  }
+  },
+  "Concept": {
+    "Title": "Concepto",
+    "Fields": {
+      "IsSubConcept": "Es un Subconcepto",
+      "DependenceBy": "Depende de",
+      "CreatedByMe": "Creado por mí"
+    }
+  },
+  "Datatable": {
+    "decimal": "",
+    "emptyTable": "No hay datos disponibles en la tabla",
+    "info": "Ver _START_ al _END_ de _TOTAL_ registros",
+    "infoEmpty": "Ver del 0 al 0 de 0 registros",
+    "infoFiltered": "(Filtrado de _MAX_ registros totales)",
+    "infoPostFix": "",
+    "thousands": ",",
+    "lengthMenu": "Ver _MENU_ registros",
+    "loadingRecords": "Cargando...",
+    "processing": "Procesando...",
+    "search": "Buscar:",
+    "zeroRecords": "No se encontraron registros coincidentes",
+    "paginate": {
+        "first": "Primera",
+        "last": "Ultima",
+        "next": "Siguiente",
+        "previous": "Anterior"
+    },
+    "aria": {
+        "sortAscending":  ": activar para ordenar la columna ascendente",
+        "sortDescending": ": activar para ordenar la columna descendente"
+    }
+}
 }

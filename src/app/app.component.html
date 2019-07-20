@@ -1,9 +1,9 @@
-<div class="d-flex bg-light">
+<!-- <div class="d-flex bg-light">
     <div class="mr-auto p-2 ml-3">
         <h4> Expenditure Control </h4>
     </div>
     <div class="ml-2 py-2 mr-5">
-        <select (change)="switchLanguage($event)" class="form-control">
+        <select (change)="switchLanguage($event)" class="form-control form-control-sm">
             <option *ngFor="let lan of languages" [ngSwitch]="lan.file" id="{{ lan.file }}">
               <p *ngSwitchCase="'es'">{{ 'Application.Translate.Languages.Spanish' | translate }}</p>
               <p *ngSwitchCase="'en'">{{ 'Application.Translate.Languages.English' | translate }}</p>
@@ -12,13 +12,53 @@
     </div>
     <div class="ml-2 py-2 mr-3">
       <button *ngIf="_router.url !== '/'"
-        class="btn btn-danger"
+        class="btn btn-sm btn-danger"
         title="{{ 'Logout.Title' | translate }}"
         (click)="logOut()">
         {{ 'Logout.Title' | translate }}
       </button>
     </div>
-</div>
+</div> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand"  [ngStyle]="{'cursor': _router.url === '/' ? 'default' : ''}" [ngClass]="{'pointer': _router.url !== '/'}"
+    [routerLink]="" (click)="redirect('/menu')"> Expenditure Control </a>
+  <button class="navbar-toggler" type="button"
+    data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto" >
+        <li class="nav-item dropdown" *ngIf="_router.url !== '/'">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ 'Application.MenuNavbar.Configuration.Title' | translate }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="" (click)="redirect('configuration/concepts')">{{ 'Application.MenuNavbar.Configuration.Menu.Concepts' | translate }}</a>
+          </div>
+        </li>
+      </ul>
+      <span>
+        <form class="form-inline">
+          <select (change)="switchLanguage($event)" class="form-control form-control-sm mr-sm-2">
+            <option *ngFor="let lan of languages" [ngSwitch]="lan.file" id="{{ lan.file }}">
+              <p *ngSwitchCase="'es'">{{ 'Application.Translate.Languages.Spanish' | translate }}</p>
+              <p *ngSwitchCase="'en'">{{ 'Application.Translate.Languages.English' | translate }}</p>
+            </option>
+          </select>
+          <button *ngIf="_router.url !== '/'" type="button"
+            class="btn btn-sm btn-outline-danger my-2 my-sm-0"
+            title="{{ 'Logout.Title' | translate }}"
+            (click)="logOut()">
+            {{ 'Logout.Title' | translate }}
+          </button>
+        </form>
+      </span>
+    </div>
+</nav>
+
 <!-- TOASTR -->
 <link
   rel="stylesheet"

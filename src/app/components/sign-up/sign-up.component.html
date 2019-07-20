@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row h-100 justify-content-center align-items-center mt-5">
-    <div class="card border-dark mb-3">
+    <div class="card border-black mb-3">
       <div class="card-header">{{ 'SignUp.Title' | translate }}</div>
       <div class="card-body">
         <form [formGroup]="signupFrm" (ngSubmit)="trySignup(signupFrm.value)" autocomplete="off">
@@ -39,7 +39,7 @@
                 formControlName="password">
           </div>
           <div class="form-group">
-            <button type="submit" [disabled]="!signupFrm.valid" class="btn btn-light btn-block border-dark">
+            <button type="submit" [disabled]="!signupFrm.valid" class="btn btn-light btn-block border">
               {{ 'Login.Fields.SignUp' | translate }}
             </button>
           </div>

@@ -7,6 +7,26 @@
         "English": "English"
       }
     },
+    "Generics": {
+      "Title": "Title",
+      "Yes": "Yes",
+      "No": "No",
+      "Select": "Select"
+    },
+    "Btns": {
+      "Create": "Create",
+      "Edit": "Edit",
+      "Delete": "Delete",
+      "Cancel": "Cancel"
+    },
+    "MenuNavbar": {
+      "Configuration": {
+        "Title": "Configuración",
+        "Menu": {
+          "Concepts": "Concepts"
+        }
+      }
+    },
     "Messages": {
       "Saved": "Saved successfully.",
       "Deleted": "Successfully eliminated.",
@@ -24,7 +44,7 @@
     },
     "Errors": {
       "OneField": "You must enter email and password to log in.",
-      "UserNotFound": "There is no user record corresponding to this identifier. The user may have been deleted.",
+      "UserNotFound": "Username does not exist.",
       "WrongPassword": "The password is invalid or the user does not have a password.",
       "Other": "There was some problem when sign in."
     }
@@ -53,5 +73,37 @@
       "UnsafePassword": "Unsafe Password.",
       "Other": "There was a problem when registering."
     }
-  }
+  },
+  "Concept": {
+    "Title": "Concept",
+    "Fields": {
+      "IsSubConcept": "It is a Subconcept",
+      "DependenceBy": "Dependence By",
+      "CreatedByMe": "Created by me"
+    }
+  },
+  "Datatable": {
+    "decimal": "",
+    "emptyTable": "No data available in table",
+    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+    "infoEmpty": "Showing 0 to 0 of 0 entries",
+    "infoFiltered": "(filtered from _MAX_ total entries)",
+    "infoPostFix": "",
+    "thousands": ",",
+    "lengthMenu": "Show _MENU_ entries",
+    "loadingRecords": "Loading...",
+    "processing": "Processing...",
+    "search": "Search:",
+    "zeroRecords": "No matching records found",
+    "paginate": {
+        "first": "First",
+        "last": "Last",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "aria": {
+        "sortAscending": ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+}
 }

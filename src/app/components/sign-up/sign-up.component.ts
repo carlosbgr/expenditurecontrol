@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, Form } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 
+import { EStatusRequestDatabase } from '../../../core/enums/database';
+
 import { User } from '../../classes/user';
 
 import * as moment from 'moment';
-import { DatabaseService } from 'src/app/services/database/database.service';
-import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { AppSettings } from 'src/core/appSettings';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,13 +22,11 @@ export class SignUpComponent implements OnInit {
   signupFrm: FormGroup;
 
   constructor(
-    private _authService: AuthService,
-    private _dbService: DatabaseService,
-    private _firestoreService: FirestoreService,
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _toastrService: ToastrService,
     private _translateService: TranslateService,
+    private _http: HttpClient,
   ) {
     this.signupFrm = this._formBuilder.group({
       name: ['', [Validators.required]],
@@ -43,21 +42,23 @@ export class SignUpComponent implements OnInit {
     this.signupFrm.reset();
   }
 
-  trySignup(form: Form) {
-    this._authService.exitsUser(form['email']).then((resolve) => {
-      if (resolve.length === 0) {
-        this._authService.doSignUp(form['email'], form['password']);
-        this.createUser(form);
-        this._toastrService.success(this._translateService.instant('SignUp.Messages.Registered'));
-      } else {
-        this._toastrService.warning(this._translateService.instant('SignUp.Errors.RegisteredEmail'));
-      }
-    });
+  trySignup(form: any) {
+    const body = new HttpParams()
+      .set('name', form.name)
+      .set('lastName', form.lastName)
+      .set('birth', form.birth)
+      .set('email', form.email)
+      .set('password', form.password)
+      .set('language', 'ES');
 
-    setTimeout(() => {
-      this._router.navigate(['/']);
-      this.signupFrm.reset();
-    }, 1000);
+    this._http.post(`${AppSettings.users}`  + 'register', body.toString(), AppSettings.optionsEndpoint())
+      .subscribe((data: any) => {
+        if (data.body.status === EStatusRequestDatabase.success) {
+          this._router.navigate(['/menu']);
+        } else {
+          this._toastrService.warning(this._translateService.instant('Login.Errors.Other'));
+        }
+      });
   }
 
   validateFields(form: Form): boolean {
@@ -151,12 +152,6 @@ export class SignUpComponent implements OnInit {
       email: user.getEmail(),
       birth: user.getBirth(),
     };
-
-    this._firestoreService.create('Users', userObject).subscribe((idUser) => {
-      itsOk = true;
-    }, (error) => {
-      itsOk = false;
-    });
 
     return itsOk;
   }

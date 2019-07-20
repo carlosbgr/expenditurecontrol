@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment.prod';
 import { MenuComponent } from './components/menu/menu.component';
 import { ImputeComponent } from './components/impute/impute.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ConceptsComponent } from './components/concepts/concepts.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -28,6 +29,7 @@ export function httpLoaderFactory(http: HttpClient) {
     MenuComponent,
     ImputeComponent,
     SignUpComponent,
+    ConceptsComponent,
   ],
   imports: [
     BrowserModule,
